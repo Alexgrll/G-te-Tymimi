@@ -1,0 +1,14 @@
+# Démarrer l'engin de réécriture
+RewriteEngine on
+
+# Ne pas réécrire si l'URL correspond à un fichier ou un répertoire existant
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Règle pour rediriger les URLs commençant par /admin
+RewriteRule ^admin/(.*)$ admin/index.php?p=$1 [QSA,L]
+
+# Redirection des autres URLs vers index.php pour les traiter via le routeur
+RewriteCond %{REQUEST_URI} !^/admin
+RewriteRule ^(.*)$ index.php?p=$1 [QSA,L]
