@@ -18,7 +18,7 @@
                         <li><a href="/">Accueil</a></li>
                         <li><a href="/Lodge/index">Le gîte</a></li>
                         <li><a href="/Tourism/index">Tourisme</a></li>
-                        <li><a href="/Views/contact.php">Contact</a></li>
+                        <li><a href="/Main/contact">Contact</a></li>
                     </ul>
                 </nav>
             </div>
@@ -32,7 +32,7 @@
                             <li><a href="/">Accueil</a></li>
                             <li><a href="/Lodge/index">Le gîte</a></li>
                             <li><a href="/Tourism/index">Tourisme</a></li>
-                            <li><a href="/Views/contact.php">Contact</a></li>
+                            <li><a href="/Main/contact">Contact</a></li>
                         </ul>
                     </nav>
 

@@ -30,4 +30,17 @@ class MainController extends Controller {
         require_once "Views/index.php";
     }
 
+    public function contact() {
+
+        $text = new TexteModel;
+        $image = new ImageModel;
+
+        $imageHeaderContact = $image->readOne(7);
+
+        $titleContact = $text->readOne(13);
+        $descriptionContact = $text->readOne(13);
+
+        require_once "Views/contact.php";
+    }
+
 }

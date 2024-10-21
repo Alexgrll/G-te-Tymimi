@@ -18,7 +18,7 @@
 
         <section id="section-intro-contact" class="section">
             <div id="image-container-contact" class="container">
-                <img src="/public/assets/images/entrance.jpeg" alt="Photo de l'entrée du gîte.">               
+                <img src="/public/assets/images/<?php echo $imageHeaderContact->nom_image;?>" alt="Photo de l'entrée du gîte.">               
                 <div class="container-title">
                     <h1>Contact</h1>
                 </div>
@@ -28,11 +28,8 @@
         <section id="section-contact" class="section">
             <div id="container-contact" class="container">
                 <div id="features-contact" class="features">
-                    <h2>Nous Contacter</h2>
-                    <p>
-                        Nous sommes ravis de répondre à toutes vos questions et de vous aider dans l’organisation de votre séjour à 
-                        Plougastel-Daoulas. Veuillez remplir le formulaire ci-dessous et nous vous répondrons dans les plus brefs délais.
-                    </p>
+                    <h2><?php echo $titleContact->titre_texte;?></h2>
+                    <p><?php echo $descriptionContact->description_texte;?></p>
 
                     <address>
                         <div id="phone-contact" class="container-info">
