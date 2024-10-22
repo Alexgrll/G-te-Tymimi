@@ -19,6 +19,15 @@ class UtilisateurModel extends Model {
         $this->table = 'utilisateurs';
     }
 
+    // Fonction pour trouver un utilisateur par email
+    public function findByEmail($email) {
+        $query = "SELECT * FROM utilisateurs WHERE email_utilisateur = :email";
+        $statement = $this->connection->prepare($query);
+        $statement->bindValue(':email', $email);
+        $statement->execute();
+        return $statement->fetch();
+    }
+
     /**
      * Obtenir la valeur de nom_utilisateur
      */ 

@@ -7,76 +7,47 @@ use App\Models\UtilisateurModel;
 
 class ReservationController {
 
+    
+
     public function booking() {
-        $nom = $_POST['nom'] ?? '';
-        $prenom = $_POST['prenom'] ?? '';
-        $email = $_POST['email'] ?? '';
-        $telephone = $_POST['telephone'] ?? '';
 
-        $errors = [];
-
-        // Récupérer l'utilisateur ou créer un nouvel utilisateur
         $utilisateurModel = new UtilisateurModel();
+        $reservationModel = new ReservationModel();
 
-        if (empty($nom) || !preg_match('/^[a-zA-Z -]+$/', $nom)) {
-            $errors[$nom] = "Le champs 'Nom' n'est pas valide.";
-        }
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-        if (empty($prenom) || !preg_match('/^[a-zA-Z -]+$/', $prenom)) {
-            $errors[$prenom] = "Le champs 'Prénom' n'est pas valide.";
-        }
+            $nom = $_POST['nom'] ?? '';
+            $prenom = $_POST['prenom'] ?? '';
+            $email = $_POST['email'] ?? '';
+            $telephone = !empty($_POST['tel']) ? $_POST['tel'] : '';
+    
+            $errors = [];
 
-        if(empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $errors[$email] = "Il ne s'agit pas d'un mail.";
-        } else {
-            $utilisateur = $utilisateurModel->findByEmail($email);
-            if (!$utilisateur) {
-                // Insérer un nouvel utilisateur si inexistant
-                $idUtilisateur = $utilisateurModel->create([
-                    'nom_utilisateur' => $nom,
-                    'prenom_utilisateur' => $prenom,
-                    'email_utilisateur' => $email,
-                    'telephone_utilisateur' => $telephone,
-                ]);
-            } else {
-                // Récupérer l'ID de l'utilisateur existant
-                $idUtilisateur = $utilisateur['id'];
+            if (empty($nom) || !preg_match('/^[a-zA-Z -]+$/', $nom)) {
+                $errors[] = "Le champs 'Nom' n'est pas valide.";
             }
-        }
 
-        $data = json_decode(file_get_contents('php://input'), true);
-
-        if ($data) {
-            $date_arrivee = $data['date_arrivee'];
-            $date_depart = $data['date_depart'];
-            $duree_sejour = $data['duree_sejour'];
-            $tarif_nuit = $data['tarif_nuit'];
-            $sous_total = $data['sous_total'];
-            $frais_menage = $data['frais_menage'];
-            $total = $data['total'];
-
-            // Créer une nouvelle instance du modèle de réservation
-            $reservationModel = new ReservationModel();
-
-            // Insérer la réservation dans la base de données
-            $success = $reservationModel->create([
-                'date_arrivee_reservation' => $date_arrivee,
-                'date_depart_reservation' => $date_depart,
-                'duree_sejour_reservation' => $duree_sejour,
-                'tarif_nuit_reservation' => $tarif_nuit,
-                'sous_total_reservation' => $sous_total,
-                'frais_menage_reservation' => $frais_menage,
-                'total_reservation' => $total,
-                'id_utilisateur_reservation' => $idUtilisateur,
-            ]);
-
-            if ($success) {
-                echo json_encode(['success' => true]);
-            } else {
-                echo json_encode(['success' => false]);
+            if (empty($prenom) || !preg_match('/^[a-zA-Z -]+$/', $prenom)) {
+                $errors[] = "Le champs 'Prénom' n'est pas valide.";
             }
-        } else {
-            echo json_encode(['success' => false, 'error' => 'Données invalides']);
+
+            if(empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                $errors[] = "Il ne s'agit pas d'un email.";
+            } else {
+                $utilisateur = $utilisateurModel->findByEmail($email);
+                if (!$utilisateur) {
+                    // Insérer un nouvel utilisateur si inexistant
+                    $idUtilisateur = $utilisateurModel->create([
+                        'nom_utilisateur' => $nom,
+                        'prenom_utilisateur' => $prenom,
+                        'email_utilisateur' => $email,
+                        'telephone_utilisateur' => $telephone,
+                    ]);
+                } else {
+                    // Récupérer l'ID de l'utilisateur existant
+                    $idUtilisateur = $utilisateur['id'];
+                }
+            }
         }
     }
 }

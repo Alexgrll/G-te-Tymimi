@@ -144,10 +144,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const paymentButton = document.getElementById("payment");
     if (paymentButton) {
         paymentButton.addEventListener("click", function(event) {
-            event.preventDefault(); // Empêcher le comportement par défaut du bouton
-            blockReservedDates(); // Bloquer les dates réservées
+            event.preventDefault();
+            blockReservedDates();
             alert("Les dates ont été réservées. Vous pouvez procéder au paiement.");
-            // Ajouter votre logique de paiement ici, si nécessaire
         });
     }
     }

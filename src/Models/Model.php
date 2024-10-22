@@ -47,15 +47,6 @@ use App\DB\Database;
     
             return $statement->fetch();
         }
-
-        // Fonction pour trouver un utilisateur par email
-        public function findByEmail($email) {
-            $sql = "SELECT * FROM utilisateurs WHERE email_utilisateur = :email";
-            $stmt = $this->connection->prepare($sql);
-            $stmt->bindValue(':email', $email);
-            $stmt->execute();
-            return $stmt->fetch();
-        }
     
         // UPDATE: Mettre à jour une ligne spécifique par ID
         public function update($id, $data) {

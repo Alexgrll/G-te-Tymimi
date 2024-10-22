@@ -103,7 +103,7 @@
 
                                 <div class="feature-form">
                                     <label for="tel">Téléphone (optionnel) :</label>
-                                    <input type="tel" id="telephone" name="telephone" placeholder="Votre numéro de téléphone (optionnel)" autocomplete="off">
+                                    <input type="tel" id="tel" name="telephone" placeholder="Votre numéro de téléphone (optionnel)" autocomplete="off">
                                 </div>
 
                                 <div class="feature-form">
