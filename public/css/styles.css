@@ -1070,6 +1070,10 @@ justify-content: center;
 .legal-link .container-desktop a:hover {
     border-bottom: 2px solid black;
 }
+#logo a:hover {
+    padding-bottom: 0;
+    border-bottom: none;
+}
 .section .container-info a:hover {
     color: #735c3b;
 }

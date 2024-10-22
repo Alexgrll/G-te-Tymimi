@@ -1,7 +1,7 @@
     <header>
         <section id="header-top" class="section">
             <div id="mobile-logo" class="container-mobile">
-                <img src="/public/assets/logo/logo-gite-tymimi.png" alt="Logo du Gîte Tymimi.">
+                <img src="/public/assets/logo/logo_gite_tymimi_header.png" alt="Logo du Gîte Tymimi.">
             </div>
 
             <div id="phone" class="container-info">
@@ -37,7 +37,7 @@
                     </nav>
 
                     <div id="logo" class="container-logo">
-                        <img src="/public/assets/logo/logo-gite-tymimi.png" alt="Logo du Gîte Tymimi.">
+                        <a href="/"><img src="/public/assets/logo/logo_gite_tymimi_header.png" alt="Logo du Gîte Tymimi."></a>
                     </div>
                 </div>
 

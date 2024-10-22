@@ -141,6 +141,15 @@ document.addEventListener('DOMContentLoaded', function() {
         if (backToSummaryButton) {
             backToSummaryButton.addEventListener("click", returnToSummary);
         }
+        const paymentButton = document.getElementById("payment");
+    if (paymentButton) {
+        paymentButton.addEventListener("click", function(event) {
+            event.preventDefault(); // Empêcher le comportement par défaut du bouton
+            blockReservedDates(); // Bloquer les dates réservées
+            alert("Les dates ont été réservées. Vous pouvez procéder au paiement.");
+            // Ajouter votre logique de paiement ici, si nécessaire
+        });
+    }
     }
 
     // Gestion du menu pour le mobile
@@ -398,9 +407,42 @@ function updateSummary() {
 }
 // Fonction pour confirmer la réservation et afficher le formulaire
 function confirmReservation() {
+    const startDate = calendar.selectedDates[0];
+    const endDate = calendar.selectedDates[1];
+
+    if (startDate && endDate) {
+        for (let d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
+            reservedDates.push(d.toLocaleDateString('fr-FR'));
+        }
+    }
+
     document.getElementById("reservation-summary").style.display = "none";
     document.getElementById("form-reservation-summary").style.display = "block";
     document.getElementById("form-reservation-summary").scrollIntoView({ behavior: "smooth" });
+}
+// Fonction pour bloquer les dates réservées
+function blockReservedDates() {
+
+    calendar.set('disable', reservedDates);
+
+    resetReservationForm();
+}
+// Fonction pour réinitialiser et masquer les sections de réservation
+function resetReservationForm() {
+
+    document.getElementById("selected-dates").innerText = "";
+    document.getElementById("stay-duration").innerText = "";
+    document.getElementById("nightly-rate").innerText = "";
+    document.getElementById("subtotal").innerText = "";
+    document.getElementById("total").innerText = "";
+
+    const formFields = document.querySelectorAll("#form-reservation-summary input[type='text'], #form-reservation-summary input[type='email'], #form-reservation-summary input[type='tel']");
+    formFields.forEach(field => {
+        field.value = "";
+    });
+
+    document.getElementById("reservation-summary").style.display = "none";
+    document.getElementById("form-reservation-summary").style.display = "none";
 }
 // Fonction pour revenir au récapitulatif
 function returnToSummary() {
