@@ -6,7 +6,7 @@ class ReservationModel extends Model {
     
 	protected $date_arrivee_reservation;
     protected $date_depart_reservation;
-	protected $duree_sejour_reservation;
+	protected $nombre_nuit_reservation;
 	protected $tarif_nuit_reservation;
 	protected $sous_total_reservation;
 	protected $frais_menage_reservation;
@@ -64,7 +64,7 @@ class ReservationModel extends Model {
 	 */ 
 	public function getDuree_sejour_reservation()
 	{
-		return $this->duree_sejour_reservation;
+		return $this->nombre_nuit_reservation;
 	}
 
 	/**
@@ -74,7 +74,7 @@ class ReservationModel extends Model {
 	 */ 
 	public function setDuree_sejour_reservation($duree_sejour_reservation)
 	{
-		$this->duree_sejour_reservation = $duree_sejour_reservation;
+		$this->nombre_nuit_reservation = $duree_sejour_reservation;
 
 		return $this;
 	}

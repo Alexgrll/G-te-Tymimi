@@ -20,13 +20,14 @@ use App\DB\Database;
     
             $query = "INSERT INTO " . $this->table . " ($columns) VALUES ($values)";
             $statement = $this->connection->prepare($query);
-    
+
             // Boucle pour lier les valeurs
-            foreach ($data as $key => &$val) {
-                $statement->bindParam(":$key", $val);
+            foreach ($data as $key => $val) {
+                $statement->bindValue(":$key", $val);
             }
-    
-            return $statement->execute();
+
+            $statement->execute();
+            return $this->connection->lastInsertId();
         }
     
         // READ: Récupérer toutes les données

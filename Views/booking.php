@@ -132,6 +132,6 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/fr.js"></script>
     <script src="/public/scripts/script.js"></script>
-
+ 
 </body>
 </html>

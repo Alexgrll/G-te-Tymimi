@@ -145,7 +145,24 @@ document.addEventListener('DOMContentLoaded', function() {
     if (paymentButton) {
         paymentButton.addEventListener("click", function(event) {
             event.preventDefault();
+            let form = document.querySelector("#reservation-form");
+
             blockReservedDates();
+
+            const infos = {
+                nom: form[0].value,
+                prenom: form[1].value,
+                email: form[2].value,
+                telephone: form[3].value,
+                date: reservedDates,
+                nb_nuits: calendar.nights,
+                tarif_nuit: calendar.tarif,
+                sous_total: calendar.subtotal,
+                frais: cleaningFeeToggle.checked,
+                total: calendar.total
+            };
+            data(infos);
+            resetReservationForm();
             alert("Les dates ont été réservées. Vous pouvez procéder au paiement.");
         });
     }
@@ -397,6 +414,11 @@ function updateSummary() {
             ? (totalPrice + cleaningFee).toFixed(2) 
             : totalPrice.toFixed(2);
 
+        calendar.nights = nights;
+        calendar.tarif = getSeasonalRate(startDate).toFixed(2);
+        calendar.subtotal = totalPrice.toFixed(2);
+        calendar.total = total;
+
         document.getElementById("selected-dates").innerText = `Du ${startDate.toLocaleDateString()} au ${endDate.toLocaleDateString()}`;
         document.getElementById("stay-duration").innerText = `${nights} nuits`;
         document.getElementById("nightly-rate").innerText = `${getSeasonalRate(startDate).toFixed(2)} €`;
@@ -423,8 +445,6 @@ function confirmReservation() {
 function blockReservedDates() {
 
     calendar.set('disable', reservedDates);
-
-    resetReservationForm();
 }
 // Fonction pour réinitialiser et masquer les sections de réservation
 function resetReservationForm() {
@@ -467,4 +487,18 @@ function nextTestimonial() {
 function validateEmail(email) {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return emailRegex.test(email);
+}
+
+async function data(infos) {
+    try {
+        const response = await fetch("/booking/booking", {
+            method: "POST",
+            headers: {"Content-type": "application/json"},
+            body: JSON.stringify(infos),
+        });
+
+        if (response.ok) {
+            console.log("ok");
+        }
+    } catch (error) {}
 }
