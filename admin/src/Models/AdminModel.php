@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Models;
+namespace Admin\Models;
 
-/**
- * Modèle pour la table "utilisateurs"
- */
-class UtilisateurModel extends Model {
+use App\Models\Model;
+
+class AdminModel extends Model {
 
     protected $nom_utilisateur;
     protected $prenom_utilisateur;
@@ -16,19 +15,27 @@ class UtilisateurModel extends Model {
 
     public function __construct() {
         parent::__construct();
-        $this->table = 'utilisateurs';
+        $this->table = 'reservations';
     }
 
     // Fonction pour trouver un utilisateur par email
-    public function findByEmail($email) {
-        $query = "SELECT * FROM utilisateurs WHERE email_utilisateur = :email";
+    public function findByEmail($email, $password) {
+        $query = "SELECT utilisateurs.*, roles.nom_role FROM {$this->table} JOIN roles ON roles.id = utilisateurs.id_role_utilisateur WHERE email_utilisateur = :email";
         $statement = $this->connection->prepare($query);
         $statement->bindValue(':email', $email);
         $statement->execute();
-        return $statement->fetch();
+        $admin = $statement->fetch();
+
+        if($admin && password_verify($password, $admin['password'])) {
+            if (in_array($admin['nom_role'], ['admin', 'moderateur'])) {
+                return $admin;
+            }
+        }
+
+        return false;
     }
 
-    /**
+     /**
      * Obtenir la valeur de nom_utilisateur
      */ 
     public function getNom_utilisateur()

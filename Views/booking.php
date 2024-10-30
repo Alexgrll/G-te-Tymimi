@@ -17,7 +17,7 @@
     <main>
         <section id="section-intro-booking" class="section">
             <div id="image-container-booking" class="container">
-                <img src="/public/assets/images/livingroom_view_three.jpeg" alt="Photo du séjour.">               
+                <img src="/public/assets/images/<?php echo $imageHeaderBooking->nom_image;?>" alt="Photo du séjour.">               
                 <div class="container-title">
                     <h1>Réservation</h1>
                 </div>
@@ -27,7 +27,7 @@
         <section id="section-booking" class="section">
             <div id="container-tarifs-reservation" class="container">
                 <div id="features-booking" class="features">
-                    <h2>Tarifs & Réservation</h2>
+                    <h2><?php echo $titleBooking->titre_texte;?></h2>
                     <div id="reservation-section">
                         <div id="calendar-section">
                             <input type="text" id="date-picker" placeholder="Sélectionnez vos dates" readonly>

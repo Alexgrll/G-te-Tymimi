@@ -189,7 +189,7 @@
                     <p><?php echo $descriptionOutside->description_texte;?></p>
 
                     <div id="reservation-btn" class="button">
-                        <a href="/templates/booking.php" role="button" aria-label="réservation">Réservation</a>
+                        <a href="/Booking/index" role="button" aria-label="réservation">Réservation</a>
                     </div>
                 </div>
 

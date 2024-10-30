@@ -42,7 +42,7 @@
                 </div>
 
                 <div id="reservation-button" class="button">
-                    <a href="/Views/booking.php" role="button" aria-label="Réserver">
+                    <a href="/Booking/index" role="button" aria-label="Réserver">
                         <img src="/public/assets/icons/icon_bell_white.png" alt="Icône d'une cloche de réservation.">
                         <span>Réserver</span>
                     </a>

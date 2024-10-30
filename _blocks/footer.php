@@ -23,7 +23,7 @@
                             <div id="maps-icon" class="container-icon">
                                 <img src="/public/assets/icons/icon_map_white.png" alt="Icône de localisation.">
                             </div>
-                            <a href="/Views/contact.php#container-map" aria-label="Localisation du Gîte Tymimi">Chemin du Traon Ker Illien Serpil,<br>29470 Plougastel-Daoulas</a>
+                            <a href="/Main/Contact#container-map" aria-label="Localisation du Gîte Tymimi">Chemin du Traon Ker Illien Serpil,<br>29470 Plougastel-Daoulas</a>
                         </div>
                     </address>
                 </div>
@@ -40,8 +40,8 @@
                                 <li><a href="/">Accueil</a></li>
                                 <li><a href="/Lodge/index">Le gîte</a></li>
                                 <li><a href="/Tourism/index">Tourisme</a></li>
-                                <li><a href="/Views/contact.php">Contact</a></li>
-                                <li><a href="/Views/booking.php">Réservation</a></li>
+                                <li><a href="/Main/Contact">Contact</a></li>
+                                <li><a href="/Booking/index">Réservation</a></li>
                             </ul>
                         </nav>
                     </div>

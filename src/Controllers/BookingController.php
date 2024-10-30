@@ -2,10 +2,24 @@
 
 namespace App\Controllers;
 
+use App\Models\ImageModel;
 use App\Models\ReservationModel;
+use App\Models\TexteModel;
 use App\Models\UtilisateurModel;
 
 class BookingController {
+
+    public function index() {
+
+        $text = new TexteModel;
+        $image = new ImageModel;
+
+        $imageHeaderBooking = $image->readOne(14);
+
+        $titleBooking = $text->readOne(14);
+
+        require_once "Views/booking.php";
+    }
 
     public function booking() {
 
@@ -49,25 +63,24 @@ class BookingController {
                 
                 }
 
-            $date_arrivee = $info['date'][0];
-            $date_depart = array_pop($info['date']);
-            $nb_nuits = $info['nb_nuits'];
-            $tarif_nuit = $info['tarif_nuit'];
-            $sous_total = $info['sous_total'];
-            $frais_supp = $info['frais'];
-            $total = $info['total'];
-            
+                $date_arrivee = $info['date_arrivee'];
+                $date_depart = $info['date_depart'];
+                $nb_nuits = $info['nb_nuits'];
+                $tarif_nuit = $info['tarif_nuit'];
+                $sous_total = $info['sous_total'];
+                $frais_supp = $info['frais'];
+                $total = $info['total'];
 
-            $reservationModel->create([
-                'date_arrivee_reservation'	=> $date_arrivee,
-                'date_depart_reservation' => $date_depart,
-                'nombre_nuit_reservation' => $nb_nuits,
-                'tarif_nuit_reservation' => $tarif_nuit,
-                'sous_total_reservation' => $sous_total,
-                'frais_menage_reservation' => $frais_supp,
-                'total_reservation' => $total,
-                'id_utilisateur_reservation' => $idUtilisateur
-            ]);
+                $reservationModel->create([
+                    'date_arrivee_reservation'	=> $date_arrivee,
+                    'date_depart_reservation' => $date_depart,
+                    'nombre_nuit_reservation' => $nb_nuits,
+                    'tarif_nuit_reservation' => $tarif_nuit,
+                    'sous_total_reservation' => $sous_total,
+                    'frais_menage_reservation' => $frais_supp,
+                    'total_reservation' => $total,
+                    'id_utilisateur_reservation' => $idUtilisateur
+                ]);
             }
         }
     }

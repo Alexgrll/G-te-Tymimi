@@ -124,7 +124,7 @@
                     </div>
 
                     <div id="booking-button" class="button">
-                        <a href="/Views/booking.php" role="button" aria-label="découvrir nos tarifs et disponibilités">
+                        <a href="/Booking/index" role="button" aria-label="découvrir nos tarifs et disponibilités">
                             découvrir nos tarifs<br>et disponibilités
                         </a>
                     </div>

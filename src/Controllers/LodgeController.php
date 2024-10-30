@@ -12,7 +12,7 @@ class LodgeController {
         $text = new TexteModel;
         $image = new ImageModel;
 
-        $imageHeaderLodge = $image->readOne(15);
+        $imageHeaderLodge = $image->readOne(31);
         $imageLodge = $image->readOne(5);
         $imageCarousel1 = $image->readOne(15);
         $imageCarousel2 = $image->readOne(13);

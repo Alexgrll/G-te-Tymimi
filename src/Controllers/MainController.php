@@ -13,11 +13,11 @@ class MainController extends Controller {
         $image = new ImageModel;
 
         $imageHeaderHome = $image->readOne(12);
-        $image1 = $image->readOne(21);
-        $image2 = $image->readOne(9);
-        $image3 = $image->readOne(1);
+        $image1 = $image->readOne(32);
+        $image2 = $image->readOne(30);
+        $image3 = $image->readOne(27);
         $imageTestimonial = $image->readOne(2);
-        $imageBooking = $image->readOne(7);
+        $imageBooking = $image->readOne(29);
 
         $subtitleHome = $text->readOne(1);
         $titleHome = $text->readOne(1);
@@ -35,7 +35,7 @@ class MainController extends Controller {
         $text = new TexteModel;
         $image = new ImageModel;
 
-        $imageHeaderContact = $image->readOne(7);
+        $imageHeaderContact = $image->readOne(28);
 
         $titleContact = $text->readOne(13);
         $descriptionContact = $text->readOne(13);

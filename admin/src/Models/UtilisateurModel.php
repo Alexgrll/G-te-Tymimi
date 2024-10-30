@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Models;
+namespace Admin\Models;
 
-/**
- * Modèle pour la table "utilisateurs"
- */
+use App\Models\Model;
+
 class UtilisateurModel extends Model {
 
     protected $nom_utilisateur;
@@ -19,13 +18,13 @@ class UtilisateurModel extends Model {
         $this->table = 'utilisateurs';
     }
 
-    // Fonction pour trouver un utilisateur par email
-    public function findByEmail($email) {
-        $query = "SELECT * FROM utilisateurs WHERE email_utilisateur = :email";
+    // Fonction pour joindre la table rôles
+    public function readAll() {
+        $query = "SELECT utilisateurs.*, roles.nom_role FROM {$this->table} JOIN roles ON roles.id = utilisateurs.id_role_utilisateur";
         $statement = $this->connection->prepare($query);
-        $statement->bindValue(':email', $email);
         $statement->execute();
-        return $statement->fetch();
+        
+        return $statement->fetchAll();
     }
 
     /**
@@ -44,26 +43,6 @@ class UtilisateurModel extends Model {
     public function setNom_utilisateur($nom_utilisateur)
     {
         $this->nom_utilisateur = $nom_utilisateur;
-
-        return $this;
-    }
-
-    /**
-     * Obtenir la valeur de email_utilisateur
-     */ 
-    public function getEmail_utilisateur()
-    {
-        return $this->email_utilisateur;
-    }
-
-    /**
-     * Définir la valeur de email_utilisateur
-     *
-     * @return  self
-     */ 
-    public function setEmail_utilisateur($email_utilisateur)
-    {
-        $this->email_utilisateur = $email_utilisateur;
 
         return $this;
     }
@@ -89,6 +68,26 @@ class UtilisateurModel extends Model {
     }
 
     /**
+     * Obtenir la valeur de email_utilisateur
+     */ 
+    public function getEmail_utilisateur()
+    {
+        return $this->email_utilisateur;
+    }
+
+    /**
+     * Définir la valeur de email_utilisateur
+     *
+     * @return  self
+     */ 
+    public function setEmail_utilisateur($email_utilisateur)
+    {
+        $this->email_utilisateur = $email_utilisateur;
+
+        return $this;
+    }
+
+    /**
      * Obtenir la valeur de telephone_utilisateur
      */ 
     public function getTelephone_utilisateur()
@@ -104,26 +103,6 @@ class UtilisateurModel extends Model {
     public function setTelephone_utilisateur($telephone_utilisateur)
     {
         $this->telephone_utilisateur = $telephone_utilisateur;
-
-        return $this;
-    }
-
-        /**
-     * Obtenir la valeur de mdp_utilisateur
-     */ 
-    public function getMdp_utilisateur()
-    {
-        return $this->mdp_utilisateur;
-    }
-
-    /**
-     * Définir la valeur de mdp_utilisateur
-     *
-     * @return  self
-     */ 
-    public function setMdp_utilisateur($mdp_utilisateur)
-    {
-        $this->mdp_utilisateur = $mdp_utilisateur;
 
         return $this;
     }

@@ -142,30 +142,31 @@ document.addEventListener('DOMContentLoaded', function() {
             backToSummaryButton.addEventListener("click", returnToSummary);
         }
         const paymentButton = document.getElementById("payment");
-    if (paymentButton) {
-        paymentButton.addEventListener("click", function(event) {
-            event.preventDefault();
-            let form = document.querySelector("#reservation-form");
+        if (paymentButton) {
+            paymentButton.addEventListener("click", function(event) {
+                event.preventDefault();
+                let form = document.querySelector("#reservation-form");
 
-            blockReservedDates();
+                blockReservedDates();
 
-            const infos = {
-                nom: form[0].value,
-                prenom: form[1].value,
-                email: form[2].value,
-                telephone: form[3].value,
-                date: reservedDates,
-                nb_nuits: calendar.nights,
-                tarif_nuit: calendar.tarif,
-                sous_total: calendar.subtotal,
-                frais: cleaningFeeToggle.checked,
-                total: calendar.total
-            };
-            data(infos);
-            resetReservationForm();
-            alert("Les dates ont été réservées. Vous pouvez procéder au paiement.");
-        });
-    }
+                const infos = {
+                    nom: form[0].value,
+                    prenom: form[1].value,
+                    email: form[2].value,
+                    telephone: form[3].value,
+                    date_arrivee: calendar.startDate.toLocaleDateString('fr-FR'),
+                    date_depart: calendar.endDate.toLocaleDateString('fr-FR'),
+                    nb_nuits: calendar.nights,
+                    tarif_nuit: calendar.tarif,
+                    sous_total: calendar.subtotal,
+                    frais: cleaningFeeToggle.checked,
+                    total: calendar.total
+                };
+                data(infos);
+                resetReservationForm();
+                alert("Les dates ont été réservées. Vous pouvez procéder au paiement.");
+            });
+        }
     }
 
     // Gestion du menu pour le mobile
@@ -432,10 +433,14 @@ function confirmReservation() {
     const endDate = calendar.selectedDates[1];
 
     if (startDate && endDate) {
-        for (let d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
-            reservedDates.push(d.toLocaleDateString('fr-FR'));
+        for (let d = new Date(startDate.getTime()); d <= endDate; d.setDate(d.getDate() + 1)) {
+            reservedDates.push(new Date(d).toLocaleDateString('fr-FR'));
         }
     }
+
+    // Passer `startDate` et `endDate` pour qu'ils soient correctement envoyés à la fonction `data`
+    calendar.startDate = startDate;
+    calendar.endDate = endDate;
 
     document.getElementById("reservation-summary").style.display = "none";
     document.getElementById("form-reservation-summary").style.display = "block";
@@ -488,7 +493,7 @@ function validateEmail(email) {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return emailRegex.test(email);
 }
-
+//
 async function data(infos) {
     try {
         const response = await fetch("/booking/booking", {
