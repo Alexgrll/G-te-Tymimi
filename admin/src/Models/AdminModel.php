@@ -27,7 +27,7 @@ class AdminModel extends Model {
         $admin = $statement->fetch();
 
         if($admin && password_verify($password, $admin['password'])) {
-            if (in_array($admin['nom_role'], ['admin', 'moderateur'])) {
+            if (in_array($admin['nom_role'], ['administrateur', 'moderateur'])) {
                 return $admin;
             }
         }

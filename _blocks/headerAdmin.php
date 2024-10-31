@@ -15,14 +15,14 @@
                         <ul>
                             <li><a href="admin/Booking/index">Réservations</a></li>
                             <li><a href="admin/Utilisateur/index">Utilisateurs</a></li>
-                            <li><a href="/admin/Views/text.php">Textes</a></li>
-                            <li><a href="/admin/Views/images.php">Images</a></li>
-                            <li><a href="/admin/Views/testimonial.php">Avis</a></li>
+                            <li><a href="admin/Texte/index">Textes</a></li>
+                            <li><a href="admin/Image/index">Images</a></li>
+                            <li><a href="admin/Testimonial/index">Avis</a></li>
                         </ul>
                     </nav>
                 </div>
 
                 <div>
-                    <a href="./logout.php">Se déconnecter</a>
+                    <a href="admin/Admin/logout">Se déconnecter</a>
                 </div>
     </aside>

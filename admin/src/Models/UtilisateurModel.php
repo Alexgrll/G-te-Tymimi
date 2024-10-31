@@ -27,6 +27,16 @@ class UtilisateurModel extends Model {
         return $statement->fetchAll();
     }
 
+    // Fonction pour joindre la table rôles sur un utilisateur
+    public function readOne(int $id) {
+        $query = "SELECT utilisateurs.*, roles.nom_role FROM {$this->table} JOIN roles ON roles.id = utilisateurs.id_role_utilisateur WHERE utilisateurs.id = :id";
+        $statement = $this->connection->prepare($query);
+        $statement->bindParam(":id", $id);
+        $statement->execute();
+
+        return $statement->fetch();
+    }
+
     /**
      * Obtenir la valeur de nom_utilisateur
      */ 

@@ -30,6 +30,7 @@ include($_SERVER["DOCUMENT_ROOT"]."/_blocks/doctypeAdmin.php");
                             <th>Email</th>
                             <th>Téléphone</th>
                             <th>Rôle</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
 
@@ -42,6 +43,12 @@ include($_SERVER["DOCUMENT_ROOT"]."/_blocks/doctypeAdmin.php");
                             <td><?php echo $utilisateur->email_utilisateur;?></td>
                             <td><?php echo $utilisateur->telephone_utilisateur;?></td>
                             <td><?php echo $utilisateur->nom_role;?></td>
+                            <td>
+                                <div class="modif-button">
+                                    <a id="update" href="admin/Utilisateur/update/<?php echo $utilisateur->id ?>">Modifier</a>
+                                    <a id="delete" href="admin/Utilisateur/delete/<?php echo $utilisateur->id; ?>" onclick="return confirm('Voulez-vous vraiment supprimer cet utilisateur ?');">Supprimer</a>
+                                </div>
+                            </td>
                         </tr>
                     <?php endforeach; ?>    
                     </tbody>

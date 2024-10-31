@@ -36,6 +36,7 @@
                             <th>Sous Total (€)</th>
                             <th>Frais de Ménage</th>
                             <th>Total (€)</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
 
@@ -55,6 +56,12 @@
                             <td><?php echo $reservation->sous_total_reservation;?></td>
                             <td><?php echo $reservation->frais_menage_reservation;?></td>
                             <td><?php echo $reservation->total_reservation;?></td>
+                            <td>
+                                <div class="modif-button">
+                                    <a id="update" href="">Modifier</a>
+                                    <a id="delete" href="/admin/Booking/delete/<?php echo $reservation->id; ?>" onclick="return confirm('Voulez-vous vraiment supprimer cette réservation ?');">Supprimer</a>
+                                </div>
+                            </td>
                         </tr>
 
                     <?php endforeach; ?>  

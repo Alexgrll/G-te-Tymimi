@@ -99,7 +99,8 @@ table tbody tr:nth-child(even) {
 }
 .button, 
 input[type="submit"],
-input[type="button"] {
+input[type="button"],
+.modif-button a {
     text-decoration: none;
     font-family: 'Open Sans', sans-serif;
     display: flex;
@@ -1100,6 +1101,17 @@ table img {
 }
 #sidenav-admin p {
     color: #F6F6F6;
+}
+.modif-button {
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+}
+.modif-button a {
+    font-size: 20px;
+}
+#delete {
+    background-color: #A16060;
 }
 
 /* :Hover */

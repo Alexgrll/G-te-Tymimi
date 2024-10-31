@@ -41,14 +41,15 @@
                             <td><?php echo $texte->sous_titre_texte;?></td>
                             <td><?php echo $texte->description_texte;?></td>
                             <td>
-                                <a href="">Modifier</a>
-                                <a href="">Supprimer</a>
+                                <div class="modif-button">
+                                    <a id="update" href="">Modifier</a>
+                                    <a id="delete" href="" onclick="return confirm('Voulez-vous vraiment supprimer cette image ?');">Supprimer</a>
+                                </div>
                             </td>
                         </tr>
 
                     <?php endforeach; ?>  
                     </tbody>
-
                 </table>
             </div>
         </div>

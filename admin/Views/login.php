@@ -29,6 +29,13 @@
                     <div class="feature-form">
                         <input type="submit" value="Se connecter">
                     </div>
+
+                    <?php if (isset($_SESSION['error_message'])): ?>
+                        <div class="error-message">
+                            <?= htmlspecialchars($_SESSION['error_message']) ?>
+                            <?php unset($_SESSION['error_message']); ?>
+                        </div>
+                    <?php endif; ?>
                 </form>
             </div>
         </div>

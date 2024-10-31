@@ -7,33 +7,37 @@ use App\Controllers\Controller;
 
 class AdminController extends Controller {
 
-    public function index() {
+    public function __construct() {
+        session_start();
+    }
 
-        $login = new AdminModel();
-    
+    public function index() {
         require_once "admin/Views/login.php";
     }
 
-    public function login() {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $email = $_POST['email'];
-            $password = $_POST['password'];
+    public function login($email, $password) {
+        $adminModel = new AdminModel();
 
-            $admin = $this->login($email, $password);
-            if ($admin) {
-                $_SESSION['admin_id'] = $admin['id'];
-                header('/admin/Views/booking.php');
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $email = $_POST['email'] ?? '';
+            $password = $_POST['password'] ?? '';
+
+
+            $admin = $adminModel->findByEmail($email, $password);
+
+            if ($admin && password_verify($password, $admin['password'])) {
+                $_SESSION['auth'] = $admin;
+                header('Location: /admin/Booking/index');
                 exit;
             } else {
-                echo "Email ou mot de passe incorrect.";
+                $_SESSION['error_message'] = "Vous n'avez pas l'autorisation d'accéder à cette page.";
             }
         }
-        require_once 'admin/Views/login.php';
     }
 
     public function logout() {
         session_destroy();
-        header('Location: admin/Views/login.php');
+        header('Location: /admin/Admin/index');
         exit;
     }
 }

@@ -30,6 +30,19 @@ use App\DB\Database;
             return $this->connection->lastInsertId();
         }
     
+        public function insertData($nom, $prenom, $email, $telephone, $mpd) {
+            $sql = "INSERT INTO users (nom, prenom, email, telephone, mpd) VALUES (:nom, :prenom, :email, :telephone, :mpd)";
+            $stmt = $this->connection->prepare($sql);
+            
+            $stmt->bindParam(':nom', $nom);
+            $stmt->bindParam(':prenom', $prenom);
+            $stmt->bindParam(':email', $email);
+            $stmt->bindParam(':telephone', $telephone);
+            $stmt->bindParam(':mpd', password_hash($mpd, PASSWORD_BCRYPT));
+    
+            return $stmt->execute();
+        }
+
         // READ: Récupérer toutes les données
         public function read() {
             $query = "SELECT * FROM " . $this->table;
