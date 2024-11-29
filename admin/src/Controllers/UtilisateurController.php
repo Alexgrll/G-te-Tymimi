@@ -17,7 +17,7 @@ class UtilisateurController extends Controller {
         require_once "admin/Views/users.php";
     }
 
-    // Méthode pour traiter la modification d'image 
+    // Méthode pour traiter la modification d'utilisateur
     public function update($id) {
 
         $userModel = new UtilisateurModel;
@@ -31,32 +31,41 @@ class UtilisateurController extends Controller {
     
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-            $data = [
-                'nom_utilisateur' => $_POST['nom_utilisateur'],
-                'prenom_utilisateur' => $_POST['prenom_utilisateur'],
-                'email_utilisateur' => $_POST['email_utilisateur'],
-                'telephone_utilisateur' => $_POST['telephone_utilisateur'],
-                'nom_role' => $_POST['nom_role']
-            ];
+            if (!filter_var($_POST['email_utilisateur'], FILTER_VALIDATE_EMAIL)) {
+                $errorMessage = "L'email est invalide.";
+            } else {
+                $data = [
+                    'nom_utilisateur' => htmlspecialchars(trim($_POST['nom_utilisateur'])),
+                    'prenom_utilisateur' => htmlspecialchars(trim($_POST['prenom_utilisateur'])),
+                    'email_utilisateur' => htmlspecialchars(trim($_POST['email_utilisateur'])),
+                    'telephone_utilisateur' => htmlspecialchars(trim($_POST['telephone_utilisateur'])),
+                    'nom_role' => htmlspecialchars(trim($_POST['nom_role']))
+                ];
     
-            // Enregistrez les modifications en passant l'ID et les données
-            $userModel->update($id, $data);
-            header("Location: /admin/Utilisateur/index");
-            exit;
+                $userModel->update($id, $data);
+                header("Location: /admin/Utilisateur/index");
+                exit;
+            }
         }
         include "admin/Views/updateUsers.php";
     }
 
-    // Méthode pour traiter la suppression d'image.
+    // Méthode pour traiter la suppression d'un utilisateur.
     public function delete($id) {
+
+        if (!is_numeric($id) || $id <= 0) {
+            echo "ID invalide.";
+            exit;
+        }
+
         $user = new UtilisateurModel;
         $delete = $user->delete($id);
 
         if ($delete) {
-            header('Location:/admin/Utilisateur/index');
+            header('Location: /admin/Utilisateur/index');
             exit;
         } else {
-            echo "Erreur lors de la suppression de l'image.";
+            echo "Erreur lors de la suppression d'un utilisateur.";
         }
     }
 }

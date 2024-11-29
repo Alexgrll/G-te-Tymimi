@@ -13,7 +13,7 @@
 
                     <address>
                         <div id="phone-footer" class="container-info">
-                            <div id="phone-icon" class="container-icon">
+                            <div id="phone-icon-footer" class="container-icon">
                                 <img src="/public/assets/icons/icon_phone_white.png" alt="Icône téléphone.">
                             </div>
                             <a href="tel:+33298406987" aria-label="Appelez-nous au numéro +33 2 98 40 69 87">+33 2 98 40 69 87</a>

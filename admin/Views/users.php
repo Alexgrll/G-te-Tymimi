@@ -37,19 +37,21 @@ include($_SERVER["DOCUMENT_ROOT"]."/_blocks/doctypeAdmin.php");
                     <tbody>
                     <?php foreach ($listeUtilisateur as $utilisateur): ?>
                         <tr>
-                            <th><?php echo $utilisateur->id;?></th>
-                            <td><?php echo $utilisateur->nom_utilisateur;?></td>
-                            <td><?php echo $utilisateur->prenom_utilisateur;?></td>
-                            <td><?php echo $utilisateur->email_utilisateur;?></td>
-                            <td><?php echo $utilisateur->telephone_utilisateur;?></td>
-                            <td><?php echo $utilisateur->nom_role;?></td>
+                            <th><?php echo htmlspecialchars($utilisateur->id, ENT_QUOTES, 'UTF-8'); ?></th>
+                            <td><?php echo htmlspecialchars($utilisateur->nom_utilisateur, ENT_QUOTES, 'UTF-8'); ?></td>
+                            <td><?php echo htmlspecialchars($utilisateur->prenom_utilisateur, ENT_QUOTES, 'UTF-8'); ?></td>
+                            <td><?php echo htmlspecialchars($utilisateur->email_utilisateur, ENT_QUOTES, 'UTF-8'); ?></td>
+                            <td><?php echo htmlspecialchars($utilisateur->telephone_utilisateur, ENT_QUOTES, 'UTF-8'); ?></td>
+                            <td><?php echo htmlspecialchars($utilisateur->nom_role, ENT_QUOTES, 'UTF-8'); ?></td>
                             <td>
                                 <div class="modif-button">
-                                    <a id="update" href="admin/Utilisateur/update/<?php echo $utilisateur->id ?>">Modifier</a>
-                                    <a id="delete" href="admin/Utilisateur/delete/<?php echo $utilisateur->id; ?>" onclick="return confirm('Voulez-vous vraiment supprimer cet utilisateur ?');">Supprimer</a>
+                                    <a id="update" href="/admin/Utilisateur/update/<?php echo htmlspecialchars($utilisateur->id, ENT_QUOTES, 'UTF-8'); ?>">Modifier</a>
+                                    <a id="delete" href="/admin/Utilisateur/delete/<?php echo htmlspecialchars($utilisateur->id, ENT_QUOTES, 'UTF-8'); ?>" 
+                                    onclick="return confirm('Voulez-vous vraiment supprimer cet utilisateur ?');">Supprimer</a>
                                 </div>
                             </td>
                         </tr>
+
                     <?php endforeach; ?>    
                     </tbody>
 

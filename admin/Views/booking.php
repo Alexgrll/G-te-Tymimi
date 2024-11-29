@@ -27,8 +27,6 @@
                             <th>#</th>
                             <th>Nom</th>
                             <th>Prénom</th>
-                            <th>Email</th>
-                            <th>Téléphone</th>
                             <th>Date d'Arrivée</th>
                             <th>Date de Départ</th>
                             <th>Nombre(s) de Nuit(s)</th>
@@ -47,8 +45,6 @@
                             <th><?php echo $reservation->id_utilisateur;?></th>
                             <td><?php echo $reservation->nom_utilisateur;?></td>
                             <td><?php echo $reservation->prenom_utilisateur;?></td>
-                            <td><?php echo $reservation->email_utilisateur;?></td>
-                            <td><?php echo $reservation->telephone_utilisateur;?></td>
                             <td><?php echo $reservation->date_arrivee_reservation;?></td>
                             <td><?php echo $reservation->date_depart_reservation;?></td>
                             <td><?php echo $reservation->nombre_nuit_reservation;?></td>

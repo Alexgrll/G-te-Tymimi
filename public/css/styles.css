@@ -1057,9 +1057,14 @@ input[type="button"],
     top: 0;
     left: 0;
     background-color: #2d3237;
+    padding: 0 10px;
+}
+.sidenav li {
+    margin-bottom: 10px;
 }
 .sidenav a {
     color: #F6F6F6;
+
 }
 .sidenav .features {
     margin-bottom: 15px;
@@ -1095,9 +1100,9 @@ table img {
 }
 #sidenav-titre h1 {
     display: flex;
-    text-align: center;
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: #F6F6F6;
+    margin-bottom: 20px;
 }
 #sidenav-admin p {
     color: #F6F6F6;
@@ -1112,6 +1117,10 @@ table img {
 }
 #delete {
     background-color: #A16060;
+}
+#sidenav-admin p:first-of-type {
+    font-size: 2rem;
+    margin-bottom: 10px;
 }
 
 /* :Hover */
@@ -1162,6 +1171,14 @@ table img {
 }
 #legal-links a:hover {
     color: #735c3b;
+}
+.sidenav a:hover {
+    color: #D0A96E;
+
+}
+#sidenav-titre a:hover {
+    padding-bottom: 3px;
+    border-bottom: 2px solid #D0A96E;
 }
 
 /* Mobile Version */
@@ -1387,6 +1404,9 @@ table img {
     #feature-container {
         flex-direction: column;
     }
+    .container-title {
+        top: 60%;
+    }
     #first-line,
     #second-line,
     #third-line {
@@ -1558,7 +1578,7 @@ table img {
         row-gap: 10px;
     }
     #mobile-logo {
-        top: 17%;
+        top: 25%;
     }
     .container-title {
         top: 55%;

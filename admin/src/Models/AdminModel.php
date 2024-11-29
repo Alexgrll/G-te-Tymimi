@@ -3,6 +3,7 @@
 namespace Admin\Models;
 
 use App\Models\Model;
+use PDO;
 
 class AdminModel extends Model {
 
@@ -15,7 +16,7 @@ class AdminModel extends Model {
 
     public function __construct() {
         parent::__construct();
-        $this->table = 'reservations';
+        $this->table = 'utilisateurs';
     }
 
     // Fonction pour trouver un utilisateur par email
@@ -24,10 +25,10 @@ class AdminModel extends Model {
         $statement = $this->connection->prepare($query);
         $statement->bindValue(':email', $email);
         $statement->execute();
-        $admin = $statement->fetch();
+        $admin = $statement->fetch(PDO::FETCH_OBJ);
 
-        if($admin && password_verify($password, $admin['password'])) {
-            if (in_array($admin['nom_role'], ['administrateur', 'moderateur'])) {
+        if($admin && password_verify($password, $admin->mdp_utilisateur)) {
+            if (in_array($admin->nom_role, ['administrateur', 'modérateur'])) {
                 return $admin;
             }
         }

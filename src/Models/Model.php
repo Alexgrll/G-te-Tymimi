@@ -26,7 +26,7 @@ use App\DB\Database;
                 $statement->bindValue(":$key", $val);
             }
 
-            $statement->execute();
+            $statement->execute();          
             return $this->connection->lastInsertId();
         }
     

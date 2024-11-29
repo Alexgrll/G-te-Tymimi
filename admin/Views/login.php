@@ -15,15 +15,15 @@
 
             <div id="login-admin">
                 <h1>Connexion Admin</h1>
-                <form id="admin-form" action="" method="POST">
+                <form id="admin-form" action="/admin/Admin/login" method="POST">
                     <div class="feature-form">
                         <label for="email">Email :</label>
-                        <input type="email" name="email" placeholder="Email utilisateur*">
+                        <input type="email" name="email" id="email" placeholder="Email utilisateur*">
                     </div>
 
                     <div class="feature-form">
                         <label for="password">Mot de passe :</label>
-                        <input type="password" name="password" placeholder="Mot de passe*">
+                        <input type="password" name="password" id="password" placeholder="Mot de passe*">
                     </div>       
                     
                     <div class="feature-form">
